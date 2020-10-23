@@ -19,18 +19,18 @@ module.exports = (sequelize, DataTypes) => {
 		
         role: {
 			type: DataTypes.STRING
-		}
+		},
+		phone: {
+			type: DataTypes.STRING
+		},
+		addr: {
+			type: DataTypes.STRING
+		},
 	});
 
-	// User.associate = function(models) {
-	// 	User.hasMany(models.Comments)
-	// }
 	User.associate = function(models) {
 		User.hasMany(models.Leave)
 	}
-	// User.associate = function(models) {
-	// 	User.hasMany(models.Profile)
-	// }
 
 	return User;
 };

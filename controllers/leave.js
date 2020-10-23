@@ -8,7 +8,8 @@ const leaveapp = {
             user = await Model.User.findAll({
                     include: [{
                         model: Model.Leave
-                    }]
+                    }],
+                  
                 })
 		} catch(e) {
 				console.log(e)
@@ -94,6 +95,7 @@ const leaveapp = {
 		let leave = {}
 
         console.log(req)
+        
 		try {
 			leave = await Model.Leave.create({
 
@@ -131,7 +133,6 @@ const leaveapp = {
         res.json(leave)
 
     },
-    
 
 }
 
