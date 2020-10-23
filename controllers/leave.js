@@ -25,10 +25,10 @@ const leaveapp = {
 		try {
 			user = await Model.User.findOne({
 				where: {
-					id: req.params.id
+					uid: req.params.uid
                 },
                 include: [{
-                    model: Model.Leave
+                    model: Model.Leave,
                 }]
 			})
 		} catch(e) {
@@ -45,6 +45,7 @@ const leaveapp = {
 
         try{
             user = await Model.User.create({
+                uid: req.body.uid,
                 uname: req.body.uname,
                 email: req.body.email,
                 password: req.body.password,
@@ -63,7 +64,7 @@ const leaveapp = {
             user = await Model.User.update(
                 req.body, {
                     where:{
-                        id: req.params.id
+                        uid: req.params.uid
                     }
 
             })
@@ -79,7 +80,7 @@ const leaveapp = {
 
         await Model.User.destroy({
 			where: {
-				id: req.params.id
+				uid: req.params.uid
 			}	
 		})
 
@@ -92,6 +93,7 @@ const leaveapp = {
 
 		let leave = {}
 
+        console.log(req)
 		try {
 			leave = await Model.Leave.create({
 
@@ -101,7 +103,7 @@ const leaveapp = {
                 status: req.body.status,
                 datefrom: req.body.datefrom,
                 dateto: req.body.dateto,
-				UserId: req.params.id //pk
+				UserUid: req.params.uid //pk
 			})
 		} catch(e) {
 			console.log(e)
@@ -117,7 +119,8 @@ const leaveapp = {
             leave = await Model.Leave.update(
                 req.body, {
                     where:{
-                        id: req.params.id
+                        id: req.params.id,
+                        UserUid: req.params.uid
                     }
 
             })

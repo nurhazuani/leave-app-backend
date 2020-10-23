@@ -1,9 +1,25 @@
+// const { Sequelize } = require(".");
+
 module.exports = (sequelize, DataTypes) => {
-	const User = sequelize.define('User', {
-		uname: DataTypes.STRING,
-        email: DataTypes.STRING,
-        password: DataTypes.STRING,
-        role: DataTypes.STRING
+	var User = sequelize.define('User', {
+		uid:{
+			type: DataTypes.STRING,
+			autoIncrement: false,
+			primaryKey: true
+		},
+		uname: {
+			type: DataTypes.STRING,
+		},
+        email:{
+			type: DataTypes.STRING
+		},
+        password:{
+			type: DataTypes.STRING
+		},
+		
+        role: {
+			type: DataTypes.STRING
+		}
 	});
 
 	// User.associate = function(models) {
@@ -12,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
 	User.associate = function(models) {
 		User.hasMany(models.Leave)
 	}
+	// User.associate = function(models) {
+	// 	User.hasMany(models.Profile)
+	// }
 
 	return User;
 };
