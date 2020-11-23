@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
 
     Leave.associate = function(models) {
         Leave.belongsTo(models.User)
-        
     }
 
 	return Leave;

@@ -8,8 +8,9 @@ var env = require('dotenv').config()
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var leaveRouter = require('./routes/leave');
+var adminRouter = require('./routes/admin');
 
 var Models = require("./models")
 
@@ -29,7 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/leave', leaveRouter)
+// app.use('/admin', adminRouter)
+app.use('/api/user', adminRouter)
 
 module.exports = app;

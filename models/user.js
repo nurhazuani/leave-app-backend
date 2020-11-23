@@ -1,31 +1,42 @@
 // const { Sequelize } = require(".");
+const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
-	var User = sequelize.define('User', {
+	const User = sequelize.define('User', {
 		uid:{
 			type: DataTypes.STRING,
 			autoIncrement: false,
-			primaryKey: true
+			primaryKey: true,
+			required: true,
 		},
 		uname: {
 			type: DataTypes.STRING,
 		},
         email:{
-			type: DataTypes.STRING
-		},
-        password:{
-			type: DataTypes.STRING
-		},
-		
-        role: {
-			type: DataTypes.STRING
+			type: DataTypes.STRING,
 		},
 		phone: {
 			type: DataTypes.STRING
 		},
-		addr: {
+		role: {
 			type: DataTypes.STRING
 		},
+		password:{
+			type: DataTypes.STRING,
+			required: true,
+			min:6,
+		}
+	// },
+			// {
+			// 	freezeTableName: true,
+			// 	instanceMethods: {
+			// 		generateHash(password) {
+			// 			return bcrypt.hash(password, bcrypt.genSaltSync(8));
+			// 		},
+			// 		validPassword(password) {
+			// 			return bcrypt.compare(password, this.password);
+			// 		}
+			// 	}
 	});
 
 	User.associate = function(models) {
